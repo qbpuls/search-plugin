@@ -1,8 +1,8 @@
 # search-plugin
 qb search plugin
 
-## 加速访问文件方式
 
+## 加速访问文件方式
 
 | 官网 | 文件名字 | 加速地址 |
 | ---- | ------ | -------- |
@@ -10,7 +10,7 @@ qb search plugin
 | [电影天堂](https://www.dygod.net/) | ygdy8.py | https://cdn.jsdelivr.net/gh/qbpuls/search-plugin@main/ygdy8.py
 
 
-
+欢迎提交PR或者提供更多稳定网址地址.
 
 
 ## 图示
