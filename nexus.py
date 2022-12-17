@@ -8,13 +8,36 @@ from novaprinter import prettyPrinter
 from helpers import *
 
 
-NAME = re.compile('title="(.*?)"')
+NAME = re.compile('href="details.*?>(.*?)</td>')
 RESID = re.compile('href="details.php\?(id=\d+)')
 SIZE = re.compile('>([\d\.]+)<br />([GBMTK]+)')
 SEEDERS = re.compile('#seeders">(\d+)')
 LEECHERS = re.compile('#leechers">(\d+)')
 
-def retrieve_url(url,charset = 'utf-8',method='GET', data={}):
+def remove_tags(text, which_ones=(), keep=()):
+    if which_ones and keep:
+        raise ValueError('Cannot use both which_ones and keep')
+
+    which_ones = {tag.lower() for tag in which_ones}
+    keep = {tag.lower() for tag in keep}
+
+    def will_remove(tag):
+        tag = tag.lower()
+        if which_ones:
+            return tag in which_ones
+        else:
+            return tag not in keep
+
+    def remove_tag(m):
+        tag = m.group(1)
+        return u'' if will_remove(tag) else m.group(0)
+
+    regex = '</?([^ >/]+).*?>'
+    retags = re.compile(regex, re.DOTALL | re.IGNORECASE)
+
+    return retags.sub(remove_tag, text)
+
+def retrieve_url(url,charset = 'utf-8',method='GET', data=dict()):
     req = urllib.request.Request(url, headers=headers, method=method, data=data)
     try:
         response = urllib.request.urlopen(req)
@@ -23,12 +46,13 @@ def retrieve_url(url,charset = 'utf-8',method='GET', data={}):
         return ""
     dat = response.read()
     # Check if it is gzipped
-    if dat[:2] == b'\x1f\x8b':
-        # Data is gzip encoded, decode it
+    try:
         compressedstream = io.BytesIO(dat)
         gzipper = gzip.GzipFile(fileobj=compressedstream)
         extracted_data = gzipper.read()
         dat = extracted_data
+    except:
+        pass
     info = response.info()
     return dat.encode(charset, 'replace')
     
@@ -41,14 +65,14 @@ class {filename}:
     
     def parse_search(self, html):
         content = html.split('<table class="torrentname" width="100%">')[1:]
-        for line in content[1:]:
+        for line in content:
             resId = RESID.findall(line)[0]
             prettyPrinter(
                 dict(
                     size=''.join((SIZE.findall(line)[0])),
                     link=urljoin(
                         self.url, 'download.php?%s&passkey=%s' % (resId, self.passkey)),
-                    name=NAME.findall(line)[0],
+                    name=remove_tags(NAME.findall(line)[0]),
                     
                     leech=(LEECHERS.findall(line) or [0])[0],
                     seeds=(SEEDERS.findall(line) or [0])[0],
