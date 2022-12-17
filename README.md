@@ -8,6 +8,7 @@ qb search plugin
 | ---- | ------ | -------- |
 | [磁力狐](https://mk.btfox.pw/) | btfox.py | https://cdn.jsdelivr.net/gh/qbpuls/search-plugin@main/btfox.py
 | [电影天堂](https://www.dygod.net/) | ygdy8.py | https://cdn.jsdelivr.net/gh/qbpuls/search-plugin@main/ygdy8.py
+| nexus框架的网站 | nexus | https://cdn.jsdelivr.net/gh/qbpuls/search-plugin@main/nexus.py
 
 
 欢迎提交PR或者提供更多稳定网址地址.

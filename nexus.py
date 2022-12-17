@@ -1,61 +1,83 @@
-#VERSION: 1.0
+"""#VERSION: 1.0
 # AUTHORS: qbpuls
 # CONTRIBUTORS: nexus
+
 import re
 from urllib.parse import quote, unquote,urljoin
 from novaprinter import prettyPrinter
 from helpers import *
-from json import load
 
 
-with open('nexus_settings.json', 'r') as f:
-    settings = load(f)
+NAME = re.compile('title="(.*?)"')
+RESID = re.compile('href="details.php\?(id=\d+)')
+SIZE = re.compile('>([\d\.]+)<br />([GBMTK]+)')
+SEEDERS = re.compile('#seeders">(\d+)')
+LEECHERS = re.compile('#leechers">(\d+)')
 
+def retrieve_url(url,charset = 'utf-8',method='GET', data={}):
+    req = urllib.request.Request(url, headers=headers, method=method, data=data)
+    try:
+        response = urllib.request.urlopen(req)
+    except urllib.error.URLError as errno:
+        print(" ".join(("Connection error:", str(errno.reason))))
+        return ""
+    dat = response.read()
+    # Check if it is gzipped
+    if dat[:2] == b'\x1f\x8b':
+        # Data is gzip encoded, decode it
+        compressedstream = io.BytesIO(dat)
+        gzipper = gzip.GzipFile(fileobj=compressedstream)
+        extracted_data = gzipper.read()
+        dat = extracted_data
+    info = response.info()
+    return dat.encode(charset, 'replace')
+    
 
-
-class nexusBase(object):
-    name = "qbpuls"
-    url = 'https://mk.btfox.pw/'
-
-    supported_categories = {'all':'' }
+class {filename}:
+    name = "{name}"
+    url = '{url}'
+    cookie ='{cookie}'
+    passkey = '{passkey}'
     
     def parse_search(self, html):
-        # download.php?id=10353&passkey=
-        htmls = html.split('<table class="torrents"')[1:]
-        for node in htmls:
-            name = re.findall('<a href="(.*?)" title="(.*?)">', node)
-            if not name:
-                continue
-                
-            id, name = name[0]
-            link = 'magnet:?xt=urn:btih:%s'%id.split('/')[-1].strip()
-            leech = re.findall('资源热度：.*(\d+)', node)[0]
-            size = re.findall('文件大小.*>(\d+[\.\w ]+)<', node)[0]
-            src='https://mk.btfox.pw'+id
-            self.entery_show(name, link, src,size, leech)
-
-        
-    def entery_show(self, name, link, src,size, leech):
-        prettyPrinter(
-            dict(
-                size=size.replace(' ',''),
-                link=link.strip(),
-                name=name.strip(),
-                leech=leech,
-                seeds=-1,
-                engine_url=self.url,
-                desc_link=src
+        content = html.split('<table class="torrentname" width="100%">')[1:]
+        for line in content[1:]:
+            resId = RESID.findall(line)[0]
+            prettyPrinter(
+                dict(
+                    size=''.join((SIZE.findall(line)[0])),
+                    link=urljoin(
+                        self.url, 'download.php?%s&passkey=%s' % (resId, self.passkey)),
+                    name=NAME.findall(line)[0],
+                    
+                    leech=(LEECHERS.findall(line) or [0])[0],
+                    seeds=(SEEDERS.findall(line) or [0])[0],
+                    engine_url=self.url,
+                    desc_link=urljoin(self.url, 'details.php?%s'%resId)
+                )
             )
-        )
-
+            
     def search(self, what, cat=None):
         uri = 'torrents.php?incldead=1&spstate=0&inclbookmarked=0&search=%s&search_area=0&search_mode=0'%quote(unquote(what))
         url = urljoin(self.url, uri)
-      
         headers['referer'] = self.url
+        headers['cookie'] = self.cookie
         html = retrieve_url(url)
         self.parse_search(html)
-        
-if __name__ == '__main__':
-    eztv_se = btfox()
-    eztv_se.search('步兵', 'all')
+"""
+from os.path import join, abspath, dirname
+from json import load
+base_path = dirname(abspath(__file__))
+
+with open(join(base_path,'nexus.json')) as f:
+    settings = load(f)
+
+
+for key, setting in settings.items():
+    file_name = join(base_path, '%s.py'%key)
+    try:
+        with open(file_name, 'w') as f:
+            content = __doc__.format(filename=key, **setting)
+            f.write(content)
+    except:
+        pass
