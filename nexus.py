@@ -54,7 +54,7 @@ def retrieve_url(url,charset = 'utf-8',method='GET', data=dict()):
     except:
         pass
     info = response.info()
-    return dat.encode(charset, 'replace')
+    return dat.decode(charset, 'replace')
     
 
 class {filename}:
