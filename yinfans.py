@@ -50,6 +50,3 @@ class yinfans(object):
             headers['referer'] = link
             html = retrieve_url(url)
             self.parse_search(html, url)
-            
-            
-yinfans().search('肖')
