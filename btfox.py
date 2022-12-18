@@ -1,4 +1,4 @@
-#VERSION: 1.0
+# VERSION: 1.0
 # AUTHORS: apuyuseng
 # CONTRIBUTORS: btfox
 import re
