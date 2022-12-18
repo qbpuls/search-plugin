@@ -18,6 +18,7 @@ qb search plugin
 | [磁力狐](https://mk.btfox.pw/) | btfox.py | https://cdn.jsdelivr.net/gh/qbpuls/search-plugin@main/btfox.py
 | [电影天堂](https://www.dygod.net/) | ygdy8.py | https://cdn.jsdelivr.net/gh/qbpuls/search-plugin@main/ygdy8.py
 | [4k蓝光原盘](https://www.yinfans.me/) | yinfans.py | https://cdn.jsdelivr.net/gh/qbpuls/search-plugin@main/yinfans.py
+| [d2mp4](https://www.d2mp4.net/) | d2mp4.py | https://cdn.jsdelivr.net/gh/qbpuls/search-plugin@main/d2mp4.py
 
 欢迎提交PR或者提供更多稳定网址地址.
 
