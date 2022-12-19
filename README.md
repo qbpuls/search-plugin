@@ -16,7 +16,7 @@ qb search plugin
 
 || 官网 | 文件名字 | 加速地址 |
 |---| ---- | ------ | -------- |
-|![#fff](https://i.loli.net/2021/10/18/7T4bMNpPDGRkyCV.png)| [磁力狐](https://mk.btfox.pw/) | btfox.py | https://cdn.jsdelivr.net/gh/qbpuls/search-plugin@main/btfox.py
+|![#f03c15](https://i.loli.net/2021/10/18/7T4bMNpPDGRkyCV.png)| [磁力狐](https://mk.btfox.pw/) | btfox.py | https://cdn.jsdelivr.net/gh/qbpuls/search-plugin@main/btfox.py
 |![icon](https://www.dygod.net/images/logo.gif)| [电影天堂](https://www.dygod.net/) | ygdy8.py | https://cdn.jsdelivr.net/gh/qbpuls/search-plugin@main/ygdy8.py
 |![icon](https://www.yinfans.me/wp-content/themes/Loos2/images/favicon.ico)| [4k蓝光原盘](https://www.yinfans.me/) | yinfans.py | https://cdn.jsdelivr.net/gh/qbpuls/search-plugin@main/yinfans.py
 |![icon](https://www.d2mp4.net/view/img/favicon.ico)| [d2mp4](https://www.d2mp4.net/) | d2mp4.py | https://cdn.jsdelivr.net/gh/qbpuls/search-plugin@main/d2mp4.py
