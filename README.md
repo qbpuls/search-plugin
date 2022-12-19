@@ -23,6 +23,7 @@ qb search plugin
 |<img width="25px" src="https://www.clmp4.com/Tpl/mdate/Img/favicon.ico"/>| [磁力电影天堂](https://www.clmp4.com/) | clmp4.py | https://cdn.jsdelivr.net/gh/qbpuls/search-plugin@main/clmp4.py
 |<img width="25px" src="https://cdn.baidu.com.btba.xiaoeryi.com/btba/favicon.ico"/>| [BT吧](https://www.aibtba.com/) | btba.py | https://cdn.jsdelivr.net/gh/qbpuls/search-plugin@main/btba.py
 |<img width="25px" src="https://www.bugutv.net/wp-content/themes/bugutv2022/assets/img/logo.png"/>| [BT吧](https://www.bugutv.net/) | bugutv.py | https://cdn.jsdelivr.net/gh/qbpuls/search-plugin@main/bugutv.py
+
 欢迎提交PR或者提供更多稳定网址地址.
 
 ## nexus 框架网站
