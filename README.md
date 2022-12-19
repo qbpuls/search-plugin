@@ -12,8 +12,9 @@ qb search plugin
 
 
 ## 加速访问文件方式
+
 <style>
-    [alt=icon] {
+    [alt=icon]{
         width:25px;
         vertical-align:middle;
     }
