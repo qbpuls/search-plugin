@@ -30,7 +30,7 @@ class bugutv(object):
             link = a.attrib['href']
  
             name = a.xpath('../text()')[0]
-            size = (re.findall('[\d\.GBTKi]+', name) or [''])[0]
+            size = (re.findall('[\d\.GBTKi ]+', name) or [''])[-1]
             self.entery_show(name, link, detail, size, -1)
             
 
