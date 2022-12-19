@@ -21,6 +21,7 @@ qb search plugin
 |<img width="25px" src="https://www.yinfans.me/wp-content/themes/Loos2/images/favicon.ico"/>| [4k蓝光原盘](https://www.yinfans.me/) | yinfans.py | https://cdn.jsdelivr.net/gh/qbpuls/search-plugin@main/yinfans.py
 |<img width="25px" src="https://www.d2mp4.net/view/img/favicon.ico"/>| [d2mp4](https://www.d2mp4.net/) | d2mp4.py | https://cdn.jsdelivr.net/gh/qbpuls/search-plugin@main/d2mp4.py
 |<img width="25px" src="https://www.clmp4.com/Tpl/mdate/Img/favicon.ico"/>| [磁力电影天堂](https://www.clmp4.com/) | clmp4.py | https://cdn.jsdelivr.net/gh/qbpuls/search-plugin@main/clmp4.py
+|<img width="25px" src="https://cdn.baidu.com.btba.xiaoeryi.com/btba/favicon.ico"/>| [BT吧](https://www.aibtba.com/) | btba.py | https://cdn.jsdelivr.net/gh/qbpuls/search-plugin@main/btba.py
 
 欢迎提交PR或者提供更多稳定网址地址.
 
@@ -42,7 +43,6 @@ qb search plugin
         "cookie":"cookie, 用于搜索时使用"
         "passkey": "网页[ 控制面板 ] 密钥的值,用于下载种子时使用"
     }
-    ...
 }
 ```
 注意: 脚本名字最好是域名, 不要有奇怪的符号.
