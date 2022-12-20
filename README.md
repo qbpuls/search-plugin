@@ -1,5 +1,5 @@
 # search-plugin
-qb search plugin
+qBittorrent search plugin
 
 ## 环境依赖
 
